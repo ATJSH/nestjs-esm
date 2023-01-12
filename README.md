@@ -26,7 +26,7 @@ With this repository's configuration, transpiled source codes will be in ESM for
 ...
 ```
 
-### `src/app.module.ts`
+### `src/app.module.ts` and other Typescript source files - `src/app.module.ts` 와 다른 타입스크립트 파일들
 
 Source code's import syntax is changed. Local typescript files should be imported with `.js` extension.
 
