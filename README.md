@@ -30,7 +30,7 @@ With this repository's configuration, transpiled source codes will be in ESM for
 
 Source code's import syntax is changed. Local typescript files should be imported with `.js` extension.
 
-소스코드의 import 구문이 바뀌었다. `.js` 확장자를 붙여서 import 해야한다.
+소스코드의 import 구문이 바뀌었다. `.js` 확장자를 붙여서 import 해야 한다.
 
 source (출처): [Typescript Blog](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#esm-nodejs:~:text=This%20code%20works,this%20for%20you.)
 
