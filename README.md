@@ -48,3 +48,8 @@ import { Module } from '@nestjs/common';
 })
 export class AppModule {}
 ```
+
+## Additional Information - 추가 정보
+
+- This repository uses Yarn Berry (v3) as package manager. - 이 리포지토리는 패키지 매니저로 Yarn Berry (v3) 를 사용한다.
+- Yarn Berry's Plug'n'Play is enabled in this repository. - 이 리포지토리에서는 Yarn Berry의 Plug'n'Play 가 활성화되어 있다.
