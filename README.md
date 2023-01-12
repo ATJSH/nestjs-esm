@@ -1,73 +1,50 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS Project with ESM Module setting
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+With this repository's configuration, transpiled source codes will be in ESM format import syntax.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+이 리포지토리의 설정들을 사용하면, 트랜스파일된 소스코드들은 ESM 형식의 import 구문을 사용하게 될 것이다.
 
-## Description
+## Changed Settings - 바뀐 설정들
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### `tsconfig.json`
 
-## Installation
-
-```bash
-$ npm install
+```diff
+{
+  "compilerOptions": {
++   "module": "node16",
+-   "module": "commonjs",
+...
 ```
 
-## Running the app
+### `package.json`
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```diff
+{
+  "name": "nest-esm",
++ "type": "module",
+  "scripts": {
+...
 ```
 
-## Test
+### `src/app.module.ts`
 
-```bash
-# unit tests
-$ npm run test
+Source code's import syntax is changed. Local typescript files should be imported with `.js` extension.
 
-# e2e tests
-$ npm run test:e2e
+소스코드의 import 구문이 바뀌었다. `.js` 확장자를 붙여서 import 해야한다.
 
-# test coverage
-$ npm run test:cov
+source (출처): [Typescript Blog](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#esm-nodejs:~:text=This%20code%20works,this%20for%20you.)
+
+```diff
+import { Module } from '@nestjs/common';
++ import { AppController } from './app.controller.js';
++ import { AppService } from './app.service.js';
+- import { AppController } from './app.controller';
+- import { AppService } from './app.service';
+
+@Module({
+  imports: [],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
